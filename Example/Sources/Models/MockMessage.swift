@@ -103,7 +103,11 @@ internal struct MockMessage: MessageType {
         self.messageId = messageId
         self.sentDate = date
     }
-    
+
+    init(system: NSAttributedString, user: MockUser, messageId: String, date: Date) {
+        self.init(kind: .system(system), user: user, messageId: messageId, date: date)
+    }
+
     init(custom: Any?, user: MockUser, messageId: String, date: Date) {
         self.init(kind: .custom(custom), user: user, messageId: messageId, date: date)
     }
