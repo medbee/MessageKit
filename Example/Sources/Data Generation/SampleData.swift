@@ -42,6 +42,7 @@ final internal class SampleData {
         case Location
         case Url
         case Phone
+        case System
         case Custom
         case ShareContact
     }
@@ -190,6 +191,9 @@ final internal class SampleData {
             return MockMessage(text: "https://github.com/MessageKit", user: user, messageId: uniqueID, date: date)
         case .Phone:
             return MockMessage(text: "123-456-7890", user: user, messageId: uniqueID, date: date)
+        case .System:
+            let message = NSAttributedString(string: "John Doe entered the conversation", attributes: [.font: UIFont.preferredFont(forTextStyle: .footnote)])
+            return MockMessage(system: message, user: system, messageId: uniqueID, date: date)
         case .Custom:
             return MockMessage(custom: "Someone left the conversation", user: system, messageId: uniqueID, date: date)
         case .ShareContact:

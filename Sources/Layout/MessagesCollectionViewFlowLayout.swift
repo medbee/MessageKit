@@ -169,12 +169,14 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
     lazy open var audioMessageSizeCalculator = AudioMessageSizeCalculator(layout: self)
     lazy open var contactMessageSizeCalculator = ContactMessageSizeCalculator(layout: self)
     lazy open var typingIndicatorSizeCalculator = TypingCellSizeCalculator(layout: self)
+    lazy open var systemMessageSizeCalculator = SystemMessageSizeCalculator(layout: self)
 
     /// Note:
     /// - If you override this method, remember to call MessageLayoutDelegate's
     /// customCellSizeCalculator(for:at:in:) method for MessageKind.custom messages, if necessary
     /// - If you are using the typing indicator be sure to return the `typingIndicatorSizeCalculator`
     /// when the section is reserved for it, indicated by `isSectionReservedForTypingIndicator`
+    // swiftlint:disable cyclomatic_complexity
     open func cellSizeCalculatorForItem(at indexPath: IndexPath) -> CellSizeCalculator {
         if isSectionReservedForTypingIndicator(indexPath.section) {
             return typingIndicatorSizeCalculator
@@ -199,8 +201,11 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
             return contactMessageSizeCalculator
         case .custom:
             return messagesLayoutDelegate.customCellSizeCalculator(for: message, at: indexPath, in: messagesCollectionView)
+        case .system:
+            return systemMessageSizeCalculator
         }
     }
+    // swiftlint:enable cyclomatic_complexity
 
     open func sizeForItem(at indexPath: IndexPath) -> CGSize {
         let calculator = cellSizeCalculatorForItem(at: indexPath)
