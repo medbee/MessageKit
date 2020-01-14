@@ -31,3 +31,24 @@ internal extension CGRect {
     }
 
 }
+
+internal extension CGSize {
+
+    func aspectFit(minWidth: CGFloat, maxWidth: CGFloat) -> CGSize {
+        if self.width > maxWidth {
+            let height = maxWidth * self.aspectRatio
+            return CGSize(width: maxWidth, height: height)
+        }
+
+        if self.width < minWidth {
+            let height = minWidth * self.aspectRatio
+            return CGSize(width: minWidth, height: height)
+        }
+
+        return self
+    }
+
+    var aspectRatio: CGFloat {
+        return self.height / self.width
+    }
+}

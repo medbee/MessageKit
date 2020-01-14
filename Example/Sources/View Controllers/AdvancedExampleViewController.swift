@@ -35,6 +35,11 @@ final class AdvancedExampleViewController: ChatViewController {
         messagesCollectionView = MessagesCollectionView(frame: .zero, collectionViewLayout: CustomMessagesFlowLayout())
         messagesCollectionView.register(CustomCell.self)
         super.viewDidLoad()
+        if #available(iOS 13.0, *) {
+            self.messagesCollectionView.backgroundColor = .systemBackground
+        } else {
+            self.messagesCollectionView.backgroundColor = .white
+        }
         
         updateTitleView(title: "MessageKit", subtitle: "2 Online")
     }
@@ -45,10 +50,10 @@ final class AdvancedExampleViewController: ChatViewController {
         MockSocket.shared.connect(with: [SampleData.shared.nathan, SampleData.shared.wu])
             .onTypingStatus { [weak self] in
                 self?.setTypingIndicatorViewHidden(false)
-            }.onNewMessage { [weak self] message in
-                self?.setTypingIndicatorViewHidden(true, performUpdates: {
-                    self?.insertMessage(message)
-                })
+        }.onNewMessage { [weak self] message in
+            self?.setTypingIndicatorViewHidden(true, performUpdates: {
+                self?.insertMessage(message)
+            })
         }
     }
     

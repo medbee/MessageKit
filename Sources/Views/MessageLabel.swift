@@ -451,8 +451,7 @@ open class MessageLabel: UILabel {
 
     }
 
-  open func handleGesture(_ touchLocation: CGPoint) -> Bool {
-
+    open func handleGesture(_ touchLocation: CGPoint) -> Bool {
         guard let index = stringIndex(at: touchLocation) else { return false }
 
         for (detectorType, ranges) in rangesForDetectors {

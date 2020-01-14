@@ -300,6 +300,10 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
             let cell = messagesCollectionView.dequeueReusableCell(SystemMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
+        case .attachment:
+            let cell = messagesCollectionView.dequeueReusableCell(AttachmentMessageCell.self, for: indexPath)
+            cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+            return cell
         }
     }
 

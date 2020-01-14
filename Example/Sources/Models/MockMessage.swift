@@ -52,6 +52,11 @@ private struct ImageMediaItem: MediaItem {
         self.placeholderImage = UIImage()
     }
 
+    init(url: URL, placeholderImage: UIImage) {
+        self.url = url
+        self.size = CGSize(width: 240, height: 240)
+        self.placeholderImage = placeholderImage
+    }
 }
 
 private struct MockAudiotem: AudioItem {
@@ -125,6 +130,11 @@ internal struct MockMessage: MessageType {
         self.init(kind: .photo(mediaItem), user: user, messageId: messageId, date: date)
     }
 
+    init(placeholderImage: UIImage, imageURL: URL, user: MockUser, messageId: String, date: Date) {
+        let mediaItem = ImageMediaItem(url: imageURL, placeholderImage: placeholderImage)
+        self.init(kind: .photo(mediaItem), user: user, messageId: messageId, date: date)
+    }
+
     init(thumbnail: UIImage, user: MockUser, messageId: String, date: Date) {
         let mediaItem = ImageMediaItem(image: thumbnail)
         self.init(kind: .video(mediaItem), user: user, messageId: messageId, date: date)
@@ -146,5 +156,10 @@ internal struct MockMessage: MessageType {
 
     init(contact: MockContactItem, user: MockUser, messageId: String, date: Date) {
         self.init(kind: .contact(contact), user: user, messageId: messageId, date: date)
+    }
+
+    init(placeholderImage: UIImage, imageURL: URL, text: String, user: MockUser, messageId: String, date: Date) {
+        let mediaItem = ImageMediaItem(url: imageURL, placeholderImage: placeholderImage)
+        self.init(kind: .attachment(text, mediaItem), user: user, messageId: messageId, date: date)
     }
 }
