@@ -129,6 +129,20 @@ open class AttachmentMessageCell: MessageContentCell {
         let aspectRatioConstraint = self.imageView.heightAnchor.constraint(equalTo: self.imageView.widthAnchor, multiplier: multiplier, constant: 0)
         aspectRatioConstraint.isActive = true
         self.aspectRatioConstraint = aspectRatioConstraint
+
+        displayDelegate.configureMediaMessageImageView(self.imageView, for: message, at: indexPath, in: messagesCollectionView)
+    }
+
+    /// Handle tap gesture on contentView and its subviews.
+    open override func handleTapGesture(_ gesture: UIGestureRecognizer) {
+        let touchLocation = gesture.location(in: self)
+
+        if imageView.frame.contains(self.convert(touchLocation, to: imageView)) {
+            delegate?.didTapAttachment(in: self)
+            return
+        }
+
+        super.handleTapGesture(gesture)
     }
 
     /// Used to handle the cell's contentView's tap gesture.

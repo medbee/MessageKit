@@ -149,6 +149,16 @@ public protocol MessageCellDelegate: MessageLabelDelegate {
     /// method `messageForItem(at:indexPath:messagesCollectionView)`.
     func didStopAudio(in cell: AudioMessageCell)
 
+
+    /// Triggered when imageView of AttachmentMessageCell is tapped on
+    ///
+    /// - Parameters:
+    ///   - cell: The cell where the imageView was tapped on.
+    ///
+    /// You can get a reference to the `MessageType` for the cell by using `UICollectionView`'s
+    /// `indexPath(for: cell)` method. Then using the returned `IndexPath` with the `MessagesDataSource`
+    /// method `messageForItem(at:indexPath:messagesCollectionView)`.
+    func didTapAttachment(in cell: AttachmentMessageCell)
 }
 
 public extension MessageCellDelegate {

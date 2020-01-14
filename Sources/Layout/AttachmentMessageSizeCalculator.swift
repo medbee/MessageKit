@@ -62,7 +62,6 @@ open class AttachmentMessageSizeCalculator: MessageSizeCalculator {
         let height = labelSize.height + imageSize.height
 
         let size = CGSize(width: width, height: height)
-        print("size: \(size)")
         return size
     }
 
