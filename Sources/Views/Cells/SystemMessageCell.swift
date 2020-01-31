@@ -25,10 +25,13 @@
 import UIKit
 
 /// A subclass of `MessageContentCell` used to display system messages.
-open class SystemMessageCell: UICollectionViewCell {
+open class SystemMessageCell: MessageCollectionViewCell {
 
     /// The label used to display the message's text.
     open var label = UILabel()
+
+    /// The `MessageCellDelegate` for the cell.
+    open weak var delegate: MessageCellDelegate?
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,5 +72,11 @@ open class SystemMessageCell: UICollectionViewCell {
         guard case let .system(systemMessage) = message.kind else { fatalError("Message must be of kind .system to be displayed in SystemMessageCell") }
 
         label.attributedText = systemMessage
+        delegate = messagesCollectionView.messageCellDelegate
+    }
+
+    /// Handle tap gesture on Label
+    open override func handleTapGesture(_ gesture: UIGestureRecognizer) {
+        delegate?.didTapMessage(in: self)
     }
 }
