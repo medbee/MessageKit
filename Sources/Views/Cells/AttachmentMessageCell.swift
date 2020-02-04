@@ -101,10 +101,7 @@ open class AttachmentMessageCell: MessageContentCell {
     open override func configure(with message: MessageType, at indexPath: IndexPath, and messagesCollectionView: MessagesCollectionView) {
         super.configure(with: message, at: indexPath, and: messagesCollectionView)
 
-        guard let displayDelegate = messagesCollectionView.messagesDisplayDelegate else {
-            fatalError(MessageKitError.nilMessagesDisplayDelegate)
-        }
-
+        guard let displayDelegate = messagesCollectionView.messagesDisplayDelegate else { fatalError(MessageKitError.nilMessagesDisplayDelegate) }
         guard case .attachment(let text, let item) = message.kind else { return }
 
         let enabledDetectors = displayDelegate.enabledDetectors(for: message, at: indexPath, in: messagesCollectionView)

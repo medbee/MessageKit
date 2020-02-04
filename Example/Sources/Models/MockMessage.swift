@@ -162,4 +162,9 @@ internal struct MockMessage: MessageType {
         let mediaItem = ImageMediaItem(url: imageURL, placeholderImage: placeholderImage)
         self.init(kind: .attachment(text, mediaItem), user: user, messageId: messageId, date: date)
     }
+
+    init(image: UIImage, text: String, user: MockUser, messageId: String, date: Date) {
+        let mediaItem = ImageMediaItem(image: image)
+        self.init(kind: .attachment(text, mediaItem), user: user, messageId: messageId, date: date)
+    }
 }

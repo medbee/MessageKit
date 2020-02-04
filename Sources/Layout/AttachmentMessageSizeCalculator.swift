@@ -53,7 +53,8 @@ open class AttachmentMessageSizeCalculator: MessageSizeCalculator {
         attributedText = NSAttributedString(string: text, attributes: [.font: messageLabelFont])
 
         let labelInsets = self.messageLabelInsets(for: message)
-        let imageSize = item.placeholderImage.size.aspectFit(minWidth: 250, maxWidth: maxWidth)
+        let image = item.image ?? item.placeholderImage
+        let imageSize = image.size.aspectFit(minWidth: 250, maxWidth: maxWidth)
         var labelSize = self.labelSize(for: attributedText, considering: imageSize.width - labelInsets.horizontal)
 
         labelSize.height += labelInsets.vertical
