@@ -382,6 +382,7 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
             selectedIndexPathForMenu = indexPath
             return true
         case .attachment(let text, _):
+            selectedIndexPathForMenu = indexPath
             return !text.isEmpty
         default:
             return false
