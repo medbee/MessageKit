@@ -33,7 +33,7 @@ final internal class SettingsViewController: UITableViewController {
         return .lightContent
     }
     
-    let cells = ["Mock messages count", "Text Messages", "AttributedText Messages", "Photo Messages", "Video Messages", "Audio Messages", "Emoji Messages", "Location Messages", "Url Messages", "Phone Messages", "ShareContact Messages", "System Messages"]
+    let cells = ["Mock messages count", "Text Messages", "AttributedText Messages", "Photo Messages", "Video Messages", "Audio Messages", "Emoji Messages", "Location Messages", "Url Messages", "Phone Messages", "ShareContact Messages", "System Messages", "Attachment Messages"]
     
     // MARK: - Picker
     
@@ -89,7 +89,7 @@ final internal class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellValue = cells[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell()
-        cell.textLabel?.text = cells[indexPath.row]
+        cell.textLabel?.text = cellValue
         
         switch cellValue {
         case "Mock messages count":

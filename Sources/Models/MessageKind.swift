@@ -66,6 +66,9 @@ public enum MessageKind {
     /// A system message.
     case system(NSAttributedString)
 
+    /// A photo and text message
+    case attachment(String, MediaItem)
+
     // MARK: - Not supported yet
 
 //    case placeholder

@@ -43,6 +43,7 @@ final internal class SampleData {
         case Url
         case Phone
         case System
+        case Attachment
         case Custom
         case ShareContact
     }
@@ -153,7 +154,7 @@ final internal class SampleData {
         return messageTypes.random()!
     }
 
-    // swiftlint:disable cyclomatic_complexity
+    // swiftlint:disable cyclomatic_complexity function_body_length
     func randomMessage(allowedSenders: [MockUser]) -> MockMessage {
         let randomNumberSender = Int(arc4random_uniform(UInt32(allowedSenders.count)))
         
@@ -196,6 +197,12 @@ final internal class SampleData {
             return MockMessage(system: message, user: system, messageId: uniqueID, date: date)
         case .Custom:
             return MockMessage(custom: "Someone left the conversation", user: system, messageId: uniqueID, date: date)
+        case .Attachment:
+            let randomNumberImage = Int(arc4random_uniform(UInt32(messageImages.count)))
+            let randsomScale = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+            let image = messageImages[randomNumberImage].scale(by: randsomScale)
+            let randomSentence = Lorem.sentence(nbWords: 60) + " 123-456-7890\n" + "https://github.com/MessageKit"
+            return MockMessage(image: image, text: randomSentence, user: user, messageId: uniqueID, date: date)
         case .ShareContact:
             let randomContact = Int(arc4random_uniform(UInt32(contactsToShare.count)))
             return MockMessage(contact: contactsToShare[randomContact], user: user, messageId: uniqueID, date: date)

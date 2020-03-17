@@ -252,6 +252,10 @@ extension ChatViewController: MessageCellDelegate {
         print("Accessory view tapped")
     }
 
+    func didTapAttachment(in cell: AttachmentMessageCell) {
+        print("ImageView of Attachment tapped")
+    }
+
 }
 
 // MARK: - MessageLabelDelegate

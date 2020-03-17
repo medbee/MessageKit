@@ -24,6 +24,8 @@
 
 import UIKit
 import InputBarAccessoryView
+import MobileCoreServices
+
 
 /// A subclass of `UIViewController` with a `MessagesCollectionView` object
 /// that is used to display conversation interfaces.
@@ -300,6 +302,10 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
             let cell = messagesCollectionView.dequeueReusableCell(SystemMessageCell.self, for: indexPath)
             cell.configure(with: message, at: indexPath, and: messagesCollectionView)
             return cell
+        case .attachment:
+            let cell = messagesCollectionView.dequeueReusableCell(AttachmentMessageCell.self, for: indexPath)
+            cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+            return cell
         }
     }
 
@@ -375,6 +381,9 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
         case .text, .attributedText, .emoji, .photo:
             selectedIndexPathForMenu = indexPath
             return true
+        case .attachment(let text, _):
+            selectedIndexPathForMenu = indexPath
+            return !text.isEmpty
         default:
             return false
         }
@@ -401,6 +410,16 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
             pasteBoard.string = attributedText.string
         case .photo(let mediaItem):
             pasteBoard.image = mediaItem.image ?? mediaItem.placeholderImage
+        case .attachment(let text, let item):
+            pasteBoard.items = [
+                [kUTTypeUTF8PlainText as String : text]
+            ]
+
+            if let imageData = (item.image ?? item.placeholderImage).pngData() {
+                pasteBoard.addItems([
+                    [kUTTypePNG as String: imageData]
+                ])
+            }
         default:
             break
         }

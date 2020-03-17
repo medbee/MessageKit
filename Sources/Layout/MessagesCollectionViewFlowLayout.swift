@@ -170,6 +170,7 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
     lazy open var contactMessageSizeCalculator = ContactMessageSizeCalculator(layout: self)
     lazy open var typingIndicatorSizeCalculator = TypingCellSizeCalculator(layout: self)
     lazy open var systemMessageSizeCalculator = SystemMessageSizeCalculator(layout: self)
+    lazy open var attachmentMessageSizeCalculator = AttachmentMessageSizeCalculator(layout: self)
 
     /// Note:
     /// - If you override this method, remember to call MessageLayoutDelegate's
@@ -203,6 +204,8 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
             return messagesLayoutDelegate.customCellSizeCalculator(for: message, at: indexPath, in: messagesCollectionView)
         case .system:
             return systemMessageSizeCalculator
+        case .attachment:
+            return attachmentMessageSizeCalculator
         }
     }
     // swiftlint:enable cyclomatic_complexity
@@ -326,7 +329,9 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 videoMessageSizeCalculator,
                 locationMessageSizeCalculator,
                 audioMessageSizeCalculator,
-                contactMessageSizeCalculator
+                contactMessageSizeCalculator,
+                systemMessageSizeCalculator,
+                attachmentMessageSizeCalculator
         ]
     }
     
