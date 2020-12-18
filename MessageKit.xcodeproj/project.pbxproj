@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -38,7 +38,6 @@
 		383B9EB121728BAD008AB91A /* SenderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383B9EB021728BAD008AB91A /* SenderType.swift */; };
 		388119462253EC30004B26AF /* TypingIndicatorCellSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388119452253EC30004B26AF /* TypingIndicatorCellSizeCalculator.swift */; };
 		38A2230F221FB8A300D14DAF /* MessageInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2230E221FB8A300D14DAF /* MessageInputBar.swift */; };
-		38A223112223493500D14DAF /* InputBarAccessoryView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38A223102223493400D14DAF /* InputBarAccessoryView.framework */; };
 		38F8062F2173CD8F00CDB9DB /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F8062D2173CD4300CDB9DB /* MockUser.swift */; };
 		38F8063221740D9E00CDB9DB /* TypingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F8063021740D9D00CDB9DB /* TypingIndicator.swift */; };
 		38F8063321740D9E00CDB9DB /* BubbleCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F8063121740D9D00CDB9DB /* BubbleCircle.swift */; };
@@ -99,6 +98,7 @@
 		CD42644123CE4D7500294169 /* AttachmentMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42644023CE4D7500294169 /* AttachmentMessageCell.swift */; };
 		CD8D8F9923AA35D5008EA777 /* SystemMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8F9823AA35D5008EA777 /* SystemMessageCell.swift */; };
 		CD8D8F9B23AA3B74008EA777 /* SystemMessageSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D8F9A23AA3B74008EA777 /* SystemMessageSizeCalculator.swift */; };
+		CDCA9164258D62CE00B4622A /* InputBarAccessoryView.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDCA9163258D62CE00B4622A /* InputBarAccessoryView.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,6 +221,7 @@
 		CD42644023CE4D7500294169 /* AttachmentMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentMessageCell.swift; sourceTree = "<group>"; };
 		CD8D8F9823AA35D5008EA777 /* SystemMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessageCell.swift; sourceTree = "<group>"; };
 		CD8D8F9A23AA3B74008EA777 /* SystemMessageSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessageSizeCalculator.swift; sourceTree = "<group>"; };
+		CDCA9163258D62CE00B4622A /* InputBarAccessoryView.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = InputBarAccessoryView.xcframework; path = Carthage/Build/InputBarAccessoryView.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,7 +229,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38A223112223493500D14DAF /* InputBarAccessoryView.framework in Frameworks */,
+				CDCA9164258D62CE00B4622A /* InputBarAccessoryView.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +249,7 @@
 		1F7FC8C21FD26F22006CC979 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDCA9163258D62CE00B4622A /* InputBarAccessoryView.xcframework */,
 				38A223102223493400D14DAF /* InputBarAccessoryView.framework */,
 				38C2AE7B20D4878D00F8079E /* MessageInputBar.framework */,
 				1F7FC8C71FD26F49006CC979 /* Nimble.framework */,
@@ -882,7 +884,12 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Supporting/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.messagekit.MessageKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -908,11 +915,17 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Supporting/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.messagekit.MessageKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -925,7 +938,12 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hexedbits.MessageKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -939,10 +957,16 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hexedbits.MessageKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
